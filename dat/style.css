@@ -380,7 +380,7 @@ footer a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('images/header2.jpg'); /* győződj meg, hogy ez létezik */
+  background-image: url('../images/header2.jpg'); /* győződj meg, hogy ez létezik */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -406,6 +406,6 @@ footer a:hover {
   }
 
   .about::before {
-    background-image: url('images/header2-mobil.jpg'); /* mobilra optimalizált kép */
+    background-image: url('../images/header2-mobil.jpg'); /* mobilra optimalizált kép */
   }
 }
