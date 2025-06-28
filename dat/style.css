@@ -6,7 +6,8 @@ body {
     margin-inline: auto;
     padding: 0 1rem;
     text-align: center;
-    background-color: #888; /* ide jöhet bármilyen színkód */
+    background-color: #000; /* ide jöhet bármilyen színkód */
+	color: white;
 }
 
 /* Betűméret */
@@ -14,11 +15,13 @@ p {
     font-size: 1.4rem;
     line-height: 1.6;
     text-align: center;
+	color: #fff;
 }
 
 h2 {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  color: #fff;
 }
 
 .navbar ul {
@@ -121,7 +124,7 @@ h2 {
 }
 
 .email-button:hover {
-  background-color: #02fc88; /* például világoskék */
+  background-color: #02fc88;
   color: #fff;
   cursor: pointer;
 }
@@ -300,7 +303,7 @@ h2 {
     display: none;
     flex-direction: column;
     align-items: center;
-    background: #111;
+    background: #000;
     padding: 0;
   }
 
@@ -373,31 +376,39 @@ footer a:hover {
 	min-height: 100vh; /* TELJES képernyőmagasság */
 }
 
-.about::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../images/header2.jpg'); /* győződj meg, hogy ez létezik */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  opacity: 0.5;
-  z-index: 0;
-}
-
 .about-content {
   position: relative;
   z-index: 1;
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  background: transparent;
-  color: black;
+  background: transparent; /* vagy NE legyen háttér, ha nincs rá szükség */
+  color: white;
 }
+
+.about-content * {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+
+.about-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/header2.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: 0;
+  pointer-events: none; /* csak ha biztosan nem akarod, hogy kattintható legyen */
+}
+
 
 @media (max-width: 768px) {
   .about-content {
@@ -405,7 +416,90 @@ footer a:hover {
     padding-right: 0.5rem;
   }
 
-  .about::before {
+  .about-content::before {
     background-image: url('../images/header2-mobil.jpg'); /* mobilra optimalizált kép */
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0 0.2rem /* eltünteti a jobb-bal margót mobilon */
+  }
+}
+
+
+/* Music gallery */
+.music-gallery {
+  max-width: 1200px; /* egyezik a body max-width-ével */
+  margin: 0 auto;
+  padding: 0 1rem; /* egyezik a body padding-jével */
+  background-color: #000; /* pont ugyanaz */
+  font-family: Arial, sans-serif; /* azonos betűtípus */
+  color: white; /* ha kell, hogy szöveg is legyen fehér */
+  text-align: center;
+}
+
+.music-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  gap: 20px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.music-gallery__item {
+  text-align: center;
+  max-width: 350px; /* egyezik az album képek max-width-ével */
+  width: 100%;
+}
+
+.music-gallery__cover {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px; /* megegyezik album border-radius-al */
+  box-shadow: none; /* nincs árnyék, ahogy a főoldalon sem */
+  transition: none; /* nincs zoom effekt */
+  cursor: default;
+}
+
+.music-gallery__links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.music-gallery__icon {
+  width: 28px;
+  height: auto;
+  filter: grayscale(1) brightness(0.9); /* egyezik az alap ikon filterrel */
+  transition: filter 0.3s ease;
+}
+
+.music-gallery__icon:hover {
+  filter: none; /* színes hover */
+}
+
+/* Mobilra reszponzív */
+@media (max-width: 768px) {
+  .music-gallery__grid {
+    grid-template-columns: repeat(2, 160px);
+    gap: 50px;
+    justify-content: center; /* középre a grid */
+    margin: 0 auto;
+  }
+
+  .music-gallery__item {
+    max-width: 160px;
+  }
+
+  .music-gallery__cover {
+    max-width: 160px;
+    height: auto;
+  }
+
+  .music-gallery__links {
+    gap: 30px;
   }
 }
